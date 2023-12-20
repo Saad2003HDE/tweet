@@ -1,0 +1,23 @@
+extends layout.pug
+
+block content
+  h1 Publier du contenu
+
+  // Formulaire de publication de contenu
+  form(action="/post/publier", method="post", enctype="multipart/form-data")
+    if errors && errors.length > 0
+      // Afficher les erreurs de validation
+      ul
+        each error in errors
+          li= error.msg
+
+    div
+      label(for="contenu") Contenu du message:
+      textarea(id="contenu", name="contenu", placeholder="Que voulez-vous partager ?", rows="4" required)
+
+    div
+      label(for="image") Sélectionnez une image (optionnel):
+      input(type="file", id="image", name="image", accept="image/*")
+
+    div
+      input(type="submit", value="Publier")

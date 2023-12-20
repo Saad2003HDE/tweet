@@ -1,0 +1,30 @@
+// layout.pug
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="/css/style.css")
+    script(src="/js/script.js") 
+    title WWW.TWITTER.COM
+  body 
+    header
+      h1 Twitter
+      nav
+        ul  
+          li 
+            a(href="/", class=(page === 'home' ? 'active' : '')) Home 
+          li 
+            a(href="/afficher-connexion", class=(page === 'connexion' ? 'active' : '')) Connexion 
+          li 
+            a(href="/afficher-inscription", class=(page === 'inscription' ? 'active' : '')) Inscription 
+          li 
+            a(href="/post/publier", class=(page === 'post' ? 'active' : '')) Publier
+          li 
+            a(href="/deconnecter", onclick="return confirmDeconnexion()", class=(page === 'deconnexion' ? 'active' : '')) Déconnexion
+          li 
+            a(href="/invitation", onclick="confirmInvitation()", class=(page === 'invitation' ? 'active' : '')) Suivre
+
+    include includes/top-bar.pug
+
+    div.container
+      block content

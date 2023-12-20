@@ -1,0 +1,28 @@
+extends layout.pug
+
+block content
+    div
+        h1 Inscrivez‑vous.
+        form(action="/enregistrer", method="post")
+            div
+                input(type="text" name="nom" placeholder="Votre nom : ")
+            div
+            <br>
+                input(type="text" name="prenom" placeholder="Votre prénom : ")
+            div
+            <br>
+                input(type="email" name="email" placeholder="Votre email : ")
+            div
+            <br>
+                input(type="password" name="password" placeholder="Votre mot de passe : ")
+            div
+                if errors
+                    ul(style="color:red")
+                        each error in errors
+                            li= error
+            div
+            <br>
+                input(type="submit" value="S'enregistrer")
+                // Ajouter un lien vers la page de connexion
+                p Vous avez déjà un compte ?
+                a(href="/afficher-connexion") Connectez-vous ici

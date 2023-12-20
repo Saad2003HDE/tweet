@@ -1,0 +1,10 @@
+extends layout.pug
+
+block content
+  h1 Invitation à rejoindre
+
+  form#invitationForm
+    label(for="emailDestinataire") Adresse e-mail du destinataire:
+    input(type="email", id="emailDestinataire", name="emailDestinataire", required)
+
+    button(type="button", onclick="envoyerInvitation()") Envoyer l'invitation

@@ -1,0 +1,14 @@
+extends layout.pug
+
+block content
+  h1 Home
+
+  if user
+    h2 Bienvenue #{user.nom} #{user.prenom}
+
+  if contenuPublie.length > 0
+    each publication in contenuPublie
+      div
+        p= publication.contenu
+        if publication.imageURL
+          img(src=publication.imageURL, alt="Image de la publication")

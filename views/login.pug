@@ -1,0 +1,23 @@
+include layout.pug
+
+block content
+  div
+    h1 Connectez‑vous.
+    form(action="/connecter", method="post")
+      div
+        input(type="email" name="email" placeholder="Votre email : ")
+      div
+      <br>
+        input(type="password" name="password" placeholder="Votre mot de passe : ")
+        if errors
+          ul(style="color:red")
+            each error in errors
+              li= error
+      div
+      <br>
+        
+        input(type="submit", value="Se connecter")
+        // Ajouter un lien vers la page d'inscription
+        p Vous n'avez pas de compte ?
+        a(href="/afficher-inscription") Inscrivez-vous ici
+    

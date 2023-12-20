@@ -1,0 +1,45 @@
+// suivre.pug
+
+extends layout.pug
+
+block content
+  h1 Suivre des utilisateurs
+
+  each utilisateur in utilisateursDisponibles
+    p= utilisateur.nom
+    button(type="button" onclick="suivreUtilisateur('#{utilisateur._id}')") Suivre
+
+  script.
+ 
+const nodemailer = require('nodemailer');
+
+// Configurer le transporteur (SMTP)
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'votre@gmail.com', // Remplacez par votre adresse e-mail Gmail
+    pass: 'votreMotDePasse', // Remplacez par votre mot de passe Gmail
+  },
+});
+
+// Fonction pour envoyer une invitation par e-mail
+function envoyerInvitation(emailDestinataire, nomUtilisateur) {
+  // Options du message
+  const options = {
+    from: 'votre@gmail.com', // Adresse e-mail expéditeur
+    to: emailDestinataire, // Adresse e-mail destinataire
+    subject: 'Invitation à rejoindre notre réseau', // Sujet du message
+    text: `Bonjour ${nomUtilisateur},\n\nVous avez reçu une invitation à rejoindre notre réseau. Cliquez sur le lien suivant pour accepter : [Lien d'invitation]\n\nCordialement,\nVotre Application`,
+  };
+
+  // Envoi du message
+  transporter.sendMail(options, (erreur, info) => {
+    if (erreur) {
+      return console.error('Erreur lors de l\'envoi de l\'invitation par e-mail :', erreur);
+    }
+    console.log('E-mail d\'invitation envoyé avec succès. Informations :', info);
+  });
+}
+
+// Exemple d'utilisation
+envoyerInvitation('destinataire@example.com', 'Nom Utilisateur');
